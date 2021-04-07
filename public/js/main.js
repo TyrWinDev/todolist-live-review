@@ -1,8 +1,12 @@
+//Selects all the elements with the class of del
 const deleteBtn = document.querySelectorAll('.del')
+//Selects all the span elements inside an element with the todoItem Class
 const todoItem = document.querySelectorAll('.todoItem span')
+
 const todoComplete = document.querySelectorAll('.todoItem span.completed')
 
-Array.from(deleteBtn).forEach((el)=>{
+//Group elements in an Array, and iterates through them adding an event listener
+Array.from(deleteBtn).forEach((el) => {
     el.addEventListener('click', deleteTodo)
 })
 
@@ -15,8 +19,10 @@ Array.from(todoComplete).forEach((el)=>{
 })
 
 async function deleteTodo(){
+    //We grab the text from the sibling element before our delete class. 
     const todoText = this.parentNode.childNodes[1].innerText
-    try{
+
+    try {
         const response = await fetch('deleteTodo', {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
@@ -49,6 +55,7 @@ async function markComplete(){
         console.log(err)
     }
 }
+
 
 async function undo(){
     const todoText = this.parentNode.childNodes[1].innerText

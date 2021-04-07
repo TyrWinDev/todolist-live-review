@@ -5,29 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <h1>To-Do's</h1>
+    
     <ul>
-    <% for(let i = 0; i < zebra.length; i++) { %>
-        <li class='todoItem'>
-            <% if(zebra[i].completed === true) {%>
-            <span class="completed"><%= zebra[i].todo %></span>
-            <% }else{ %>
-            <span><%= zebra[i].todo %></span>
-            <% } %>   
-            <span class='del'> Delete </span>
-        </li>
-    <% } %>    
-    </ul>
-
-    <h2>Things left to do: <%= left %></h2>
-
-    <form action="/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
-    </form>
+                <!-- We use a for loop to iterate through each item of the todo list. -->
+        <% for(let i = 0; i < zebra.length; i++) { %>
+              <!-- We use an IF ELSE conditional statement to show either a completed todo item, or an incomplete one by toggling the class on each case. -->
+            <li class='todoItem'>
+                <% if(zebra[i].completed === true) {%>
+                <span class="completed"><%= zebra[i].todo %></span>
+                <% }else{ %>
+                <span><%= zebra[i].todo %></span>
+                <% } %>   
+                <span class='del'> Delete </span>
+            </li>
+        <% } %>    
+        </ul>
+    
+        <h2>Things left to do: <%= left %></h2>
+        
+        <!-- We use a form with the createTodo route, and POST method to add items from the input into our collection as Objects. -->
+        <form action="/createTodo" method='POST'>
+            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <input type="submit">
+        </form>
 
     <script src="js/main.js"></script>
 </body>
